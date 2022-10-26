@@ -39,7 +39,7 @@ public class CarServiceImpl implements CarService {
 	
 	@Override
 	public List<Car> getCarByRegNum(String regNum){
-		return this.carRepository.findByRegNo(regNum);
+		return this.carRepository.findByRegNum(regNum);
 	}
 	
 	@Override
@@ -51,7 +51,7 @@ public class CarServiceImpl implements CarService {
 		return this.carRepository.findByColour(colour);
 	}
 	@Override
-	public List<Car> getCarCategory(String category){
+	public List<Car> getCarByCategory(String category){
 		return this.carRepository.findByCategory(category);
 	}
 	@Override
@@ -76,14 +76,24 @@ public class CarServiceImpl implements CarService {
 	}
 	
 	@Override
-	public Car updateCar (Car car) throws CarNotFoundException {
-		Optional<Car> optionalCarFoundById = this.carRepository.findById(car.getId());
+	public Car updateCarDetails (int id, double price) throws CarNotFoundException {
+		
+		Car updatedCarPrice = null;
+		
+		Optional<Car> optionalCarFoundById = this.carRepository.findById(id);
 	     if(optionalCarFoundById.isPresent()) {
 	    	 
 	    	 throw new CarNotFoundException();
 	     }
+	     else {
+	    	 int rows = this.carRepository.updateCarDetails(id, price);
+	    	
+	    	 if(rows > 0) {
+	    		 updatedCarPrice = this.carRepository.findById(id).get();
+	    	 }
+	     }
 	     
-	     return this.carRepository.save(car);
+	     return updatedCarPrice;
 	}
 	
 	@Override
@@ -101,6 +111,8 @@ public class CarServiceImpl implements CarService {
 		}
 		return status;
 	}
+
+	
 	
 	
 }

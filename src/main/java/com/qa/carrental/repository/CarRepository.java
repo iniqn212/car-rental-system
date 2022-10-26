@@ -18,8 +18,8 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
 	// Get car by model
 	List<Car> findByModel(String model);
 
-	// Get car by RegNo
-	List<Car> findByRegNo(String regNum);
+	// Get car by RegNum
+	List<Car> findByRegNum(String regNum);
 	
 	//Get car by seats
 	List<Car> finBySeats(int seats);
@@ -39,6 +39,6 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
 	
 	//Modifying
 	@Modifying
-	@Query("update Car c set c.price = :price where c.id = :id")
+	@Query("Update CarPrice c set c.price = :price where c.id = :id")
 	int updateCarDetails(int id, double carPricePerDay);
 }

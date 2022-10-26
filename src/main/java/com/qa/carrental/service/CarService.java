@@ -20,7 +20,7 @@ public interface CarService {
 
 	public List<Car> getCarByColour(String colour);
 
-	public List<Car> getCarCategory(String category);
+	public List<Car> getCarByCategory(String category);
 
 	public List<Car> getCarByPrice(double pricePerDay);
 
@@ -28,9 +28,11 @@ public interface CarService {
 
 	public Car addCar(Car car) throws CarAlreadyExistsException;
 
-	public Car updateCar(Car car) throws CarNotFoundException;
+	public Car updateCarDetails(int id, double price) throws CarNotFoundException;
 
 	public boolean deleteCar(int id) throws CarNotFoundException;
+
+	
 
 	
 	
