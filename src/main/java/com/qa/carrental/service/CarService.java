@@ -2,10 +2,13 @@ package com.qa.carrental.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.qa.carrental.entity.Car;
 import com.qa.carrental.exception.CarAlreadyExistsException;
 import com.qa.carrental.exception.CarNotFoundException;
 
+@Service
 public interface CarService {
 
 	List<Car> getAllCars();
